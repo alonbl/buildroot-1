@@ -51,7 +51,7 @@ $(PCMCIA_DIR)/.configured: $(PCMCIA_DIR)/.patched
 
 $(PCMCIA_DIR)/cardmgr/cardmgr: $(PCMCIA_DIR)/.configured
 	$(MAKE) -C $(PCMCIA_DIR) -i all
-	-A=`find $(PCMCIA_DIR) -type f -perm +111`; \
+	-A=`find $(PCMCIA_DIR) -type f -perm 0111`; \
 	for fo in $$A; do \
 		file $$fo | grep "ELF" | grep "executable" > /dev/null 2>&1; \
 		if [ $$? = 0 ]; then \
