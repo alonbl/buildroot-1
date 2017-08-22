@@ -1,0 +1,622 @@
+From cc1f4a1fc5bc6c618e3ab209a9c6c6de37dc9c23 Mon Sep 17 00:00:00 2001
+From: Alon Bar-Lev <alon.barlev@gmail.com>
+Date: Tue, 22 Aug 2017 19:02:49 +0300
+Subject: [PATCH] autoconf: use standard echo
+
+---
+ boehm-gc/configure          | 16 +++++++++++-----
+ configure                   | 16 +++++++++++-----
+ fixincludes/configure       | 10 ++++++----
+ gcc/configure               | 16 +++++++++++-----
+ gnattools/configure         | 16 +++++++++++-----
+ intl/configure              | 16 +++++++++++-----
+ libada/configure            | 16 +++++++++++-----
+ libcpp/configure            | 16 +++++++++++-----
+ libdecnumber/configure      | 16 +++++++++++-----
+ libffi/configure            | 16 +++++++++++-----
+ libgcc/configure            | 16 +++++++++++-----
+ libgfortran/configure       | 16 +++++++++++-----
+ libgomp/configure           | 16 +++++++++++-----
+ libiberty/configure         | 16 +++++++++++-----
+ libjava/classpath/configure | 16 +++++++++++-----
+ libjava/configure           | 16 +++++++++++-----
+ libjava/libltdl/configure   | 16 +++++++++++-----
+ libmudflap/configure        | 16 +++++++++++-----
+ libobjc/configure           | 16 +++++++++++-----
+ libssp/configure            | 16 +++++++++++-----
+ libstdc++-v3/configure      | 16 +++++++++++-----
+ zlib/configure              | 16 +++++++++++-----
+ 22 files changed, 237 insertions(+), 109 deletions(-)
+
+diff --git a/boehm-gc/configure b/boehm-gc/configure
+index 1d0b9ed..d01d85e 100755
+--- a/boehm-gc/configure
++++ b/boehm-gc/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/configure b/configure
+index 655e515..a76295a 100755
+--- a/configure
++++ b/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/fixincludes/configure b/fixincludes/configure
+index 2812b89..28d815c 100755
+--- a/fixincludes/configure
++++ b/fixincludes/configure
+@@ -470,11 +470,13 @@ else
+ fi
+ 
+ ECHO_C= ECHO_N= ECHO_T=
+-case `echo -n x` in
++case `echo -n x` in #(((((
+ -n*)
+-  case `echo 'x\c'` in
+-  *c*) ECHO_T='	';;	# ECHO_T is single tab character.
+-  *)   ECHO_C='\c';;
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
+   esac;;
+ *)
+   ECHO_N='-n';;
+diff --git a/gcc/configure b/gcc/configure
+index f7d4161..1ead482 100755
+--- a/gcc/configure
++++ b/gcc/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/gnattools/configure b/gnattools/configure
+index 30a9085..c9787a5 100755
+--- a/gnattools/configure
++++ b/gnattools/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/intl/configure b/intl/configure
+index 1a03102..63a846f 100755
+--- a/intl/configure
++++ b/intl/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libada/configure b/libada/configure
+index 8267eb3..50ee1ee 100755
+--- a/libada/configure
++++ b/libada/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libcpp/configure b/libcpp/configure
+index 5d70aed..46c00c1 100755
+--- a/libcpp/configure
++++ b/libcpp/configure
+@@ -186,11 +186,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libdecnumber/configure b/libdecnumber/configure
+index 19ece0f..ecd3848 100755
+--- a/libdecnumber/configure
++++ b/libdecnumber/configure
+@@ -186,11 +186,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libffi/configure b/libffi/configure
+index 975a1bc..b71595c 100755
+--- a/libffi/configure
++++ b/libffi/configure
+@@ -186,11 +186,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libgcc/configure b/libgcc/configure
+index eb80bda..8ce9ee0 100644
+--- a/libgcc/configure
++++ b/libgcc/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libgfortran/configure b/libgfortran/configure
+index d778801..1b71d54 100755
+--- a/libgfortran/configure
++++ b/libgfortran/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libgomp/configure b/libgomp/configure
+index 7f4be76..7262cf2 100755
+--- a/libgomp/configure
++++ b/libgomp/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libiberty/configure b/libiberty/configure
+index 14542e7..ee59764 100755
+--- a/libiberty/configure
++++ b/libiberty/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libjava/classpath/configure b/libjava/classpath/configure
+index 34090e2..5917e4f 100755
+--- a/libjava/classpath/configure
++++ b/libjava/classpath/configure
+@@ -186,11 +186,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libjava/configure b/libjava/configure
+index 9c57770..f9b7894 100755
+--- a/libjava/configure
++++ b/libjava/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libjava/libltdl/configure b/libjava/libltdl/configure
+index da75eaa..ebb6a44 100755
+--- a/libjava/libltdl/configure
++++ b/libjava/libltdl/configure
+@@ -186,11 +186,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libmudflap/configure b/libmudflap/configure
+index 70ec63d..f140e99 100755
+--- a/libmudflap/configure
++++ b/libmudflap/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libobjc/configure b/libobjc/configure
+index 1c19ab3..35bf559 100755
+--- a/libobjc/configure
++++ b/libobjc/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libssp/configure b/libssp/configure
+index f01e0ae..ec86cea 100755
+--- a/libssp/configure
++++ b/libssp/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/libstdc++-v3/configure b/libstdc++-v3/configure
+index d34267c..0631652 100755
+--- a/libstdc++-v3/configure
++++ b/libstdc++-v3/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+diff --git a/zlib/configure b/zlib/configure
+index ac43a92..d8d390f 100755
+--- a/zlib/configure
++++ b/zlib/configure
+@@ -184,11 +184,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+-- 
+2.13.0
+

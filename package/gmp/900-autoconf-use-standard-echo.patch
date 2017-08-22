@@ -1,0 +1,39 @@
+From de2803f472d9a29e84559c0d5a171649228126fb Mon Sep 17 00:00:00 2001
+From: Alon Bar-Lev <alon.barlev@gmail.com>
+Date: Tue, 22 Aug 2017 18:34:35 +0300
+Subject: [PATCH] autoconf: use standard echo
+
+---
+ configure | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+diff --git a/configure b/configure
+index c72990c..229e500 100755
+--- a/configure
++++ b/configure
+@@ -208,11 +208,17 @@ done
+ }
+ 
+ 
+-case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
+-  *c*,-n*) ECHO_N= ECHO_C='
+-' ECHO_T='	' ;;
+-  *c*,*  ) ECHO_N=-n ECHO_C= ECHO_T= ;;
+-  *)       ECHO_N= ECHO_C='\c' ECHO_T= ;;
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T=' ';;     # ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T=' ';;
++  esac;;
++*)
++  ECHO_N='-n';;
+ esac
+ 
+ if expr a : '\(a\)' >/dev/null 2>&1; then
+-- 
+2.13.0
+
