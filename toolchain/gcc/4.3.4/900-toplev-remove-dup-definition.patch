@@ -1,0 +1,32 @@
+From 98864b7a1fd3b9efab26070a340f9cca0ebd2d5f Mon Sep 17 00:00:00 2001
+From: Alon Bar-Lev <alon.barlev@gmail.com>
+Date: Tue, 22 Aug 2017 19:12:17 +0300
+Subject: [PATCH] toplev: remove dup definition
+
+---
+ gcc/toplev.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gcc/toplev.h b/gcc/toplev.h
+index 26a085d..f802236 100644
+--- a/gcc/toplev.h
++++ b/gcc/toplev.h
+@@ -173,6 +173,7 @@ extern int floor_log2                  (unsigned HOST_WIDE_INT);
+ #  define CTZ_HWI __builtin_ctz
+ # endif
+ 
++#if 0
+ extern inline int
+ floor_log2 (unsigned HOST_WIDE_INT x)
+ {
+@@ -184,6 +185,7 @@ exact_log2 (unsigned HOST_WIDE_INT x)
+ {
+   return x == (x & -x) && x ? (int) CTZ_HWI (x) : -1;
+ }
++#endif
+ #endif /* GCC_VERSION >= 3004 */
+ 
+ /* Functions used to get and set GCC's notion of in what directory
+-- 
+2.13.0
+
